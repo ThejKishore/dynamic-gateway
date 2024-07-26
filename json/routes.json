@@ -1,0 +1,75 @@
+{
+  "routes": [
+    {
+      "id": "add_request_header_route",
+      "uri": "https://example.org",
+      "filters": [
+        "AddRequestHeader=X-Request-red, blue"
+      ],
+      "metadata": {
+        "optionName": "OptionValue",
+        "compositeObject": {
+          "name": "value"
+        },
+        "iAmNumber": 1
+      }
+    },
+    {
+      "id": "header_route",
+      "uri": "https://example.org",
+      "predicates": [
+        "Header=X-Request-Id, \\d+"
+      ]
+    },
+    {
+      "id": "after_route",
+      "uri": "https://example.org",
+      "predicates": [
+        {
+          "name": "Cookie",
+          "args": {
+            "name": "mycookie",
+            "regexp": "mycookievalue"
+          }
+        }
+      ]
+    },
+    {
+      "id": "add_request_header_route",
+      "uri": "https://example.org",
+      "predicates": [
+        "Path=/red/"
+      ],
+      "filters": [
+        "AddRequestHeader=X-Request-Red, Blue-"
+      ]
+    },
+    {
+      "id": "add_request_headers_route",
+      "uri": "https://example.org",
+      "filters": [
+        "AddRequestHeadersIfNotPresent=X-Request-Color-1:blue,X-Request-Color-2:green"
+      ]
+    },
+    {
+      "id": "add_request_header_route",
+      "uri": "https://example.org",
+      "predicates": [
+        "Path=/red/"
+      ],
+      "filters": [
+        "AddRequestHeadersIfNotPresent=X-Request-Red:Blue-"
+      ]
+    },
+    {
+      "id": "resource",
+      "uri": "http://localhost:9000",
+      "predicates": [
+        "Path=/resource"
+      ],
+      "filters": [
+        "TokenRelay="
+      ]
+    }
+  ]
+}
